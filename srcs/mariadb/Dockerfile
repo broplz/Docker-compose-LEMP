@@ -6,11 +6,9 @@ RUN		apt-get update \
 
 COPY		./srcs/wp_database.sql /tmp/
 COPY		./srcs/init_db.sh /tmp/
-COPY		./srcs/supervizord.conf /tmp/
 RUN		mkdir /var/mysql
 
-
-VOLUME		["/var/mysql"]
+VOLUME		["/var/lib/mysql"]
 RUN		chmod +x /tmp/*
 CMD		["bash", "/tmp/init_db.sh"]
 

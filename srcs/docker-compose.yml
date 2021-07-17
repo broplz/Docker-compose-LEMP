@@ -1,40 +1,42 @@
 version: '3.3'
 services:
-  mdb:  
-    env_file: .env
+  mdb_svc:  
     build: ./mariadb/
+    container_name: mariadb
     restart: always
     networks:
-      - services
+      - inc_net
     volumes:
-      - db_data:/var/mysql/
-  wp:
+      - db_data:/var/lib/mysql/
     env_file: .env
+  wp_svc:
     build: ./wordpress/
+    container_name: wordpress
+    depends_on:
+      - mdb_svc
+    restart: always
     networks:
-      - services
+      - inc_net
     volumes:
       - db_data:/var/www/
-    depends_on:
-      - mdb
-    restart: always
-  nginx:
     env_file: .env
+  ngin_svc:
     build: ./nginx/
+    container_name: nginx
     depends_on:
-      - wp
+      - wp_svc
     ports:
-      - 443:443
+      - "443:443"
     restart: always
     networks:
-      - services
+      - inc_net
     volumes:
       - wp_data:/var/www/
     extra_hosts:
       - "hcherrie.42.fr:127.0.0.1"
 
 networks:
-  services:
+  inc_net:
 
 volumes:
   db_data:
@@ -42,10 +44,10 @@ volumes:
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/root/data"
+      device: "/home/hcherrie/data/db"
   wp_data:
     driver: local
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/root/data"
+      device: "/home/hcherrie/data/wp"

@@ -8,8 +8,7 @@ RUN		apt-get update \
 
 COPY		./srcs/wp-config.php /etc/wordpress/
 
-RUN		mkdir -p /run/php \
-		&& mkfifo /run/php/$(ls /etc/init.d | grep php | grep fpm)
+RUN		mkdir -p /run/php
 
 CMD		/usr/sbin/$(ls /usr/sbin | grep php | grep fpm) --nodaemonize
 EXPOSE		9000
