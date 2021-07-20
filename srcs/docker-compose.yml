@@ -9,17 +9,6 @@ services:
     volumes:
       - db_data:/var/lib/mysql/
     env_file: .env
-  wp_svc:
-    build: ./wordpress/
-    container_name: wordpress
-    depends_on:
-      - mdb_svc
-    restart: always
-    networks:
-      - inc_net
-    volumes:
-      - db_data:/var/www/
-    env_file: .env
   ngin_svc:
     build: ./nginx/
     container_name: nginx
@@ -34,6 +23,17 @@ services:
       - wp_data:/var/www/
     extra_hosts:
       - "hcherrie.42.fr:127.0.0.1"
+  wp_svc:
+    build: ./wordpress/
+    container_name: wordpress
+    depends_on:
+      - mdb_svc
+    restart: always
+    networks:
+      - inc_net
+    volumes:
+      - wp_data:/var/www/
+    env_file: .env
 
 networks:
   inc_net:
@@ -44,10 +44,10 @@ volumes:
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/home/hcherrie/data/db"
+      device: "${PWD}/data/db"
   wp_data:
     driver: local
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/home/hcherrie/data/wp"
+      device: "${PWD}/data/wp"
