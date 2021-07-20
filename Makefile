@@ -20,7 +20,9 @@ drv:
 	docker volume rm $$(docker volume ls -q)
 dps:
 	docker ps -qa
-di:
+dim:
 	docker images
+dvol:
+	docker-compose volume ls -q
 
 .PHONY: all stop down ps rm
