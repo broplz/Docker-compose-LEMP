@@ -9,4 +9,4 @@ openssl rsa -noout -text -in /etc/nginx/ssl/public.key
 
 #               giving permissions
 chown -R www-data /var/www/*
-chmod -R 755 /var/www/*
+chmod -R 744 /var/www/*

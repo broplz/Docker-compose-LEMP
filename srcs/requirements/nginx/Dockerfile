@@ -7,8 +7,8 @@ RUN		apt-get update \
 		&& apt-get -y install nginx vim openssl
 
 #		copy config
-COPY		./srcs/nginx.conf /etc/nginx/sites-available/nginx.conf
-COPY		./srcs/init.sh /tmp/
+COPY		./conf/nginx.conf /etc/nginx/sites-available/nginx.conf
+COPY		./tools/init.sh /tmp/
 
 #		start script with some sh**
 RUN		sh /tmp/init.sh

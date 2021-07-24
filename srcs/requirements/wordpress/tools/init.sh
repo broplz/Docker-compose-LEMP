@@ -3,11 +3,12 @@ mkdir -p /var/www/mysite
 mkdir -p /run/php
 
 #		installing wordpress
-wget https://wordpress.org/latest.tar.gz
-tar -xvf latest.tar.gz
-rm -rf latest.tar.gz
-mv wordpress/* /var/www/mysite
-rm -rf wordpress
+wget -P /usr/local/bin https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+chmod +x /usr/local/bin/wp-cli.phar
+mv /usr/local/bin/wp-cli.phar /usr/local/bin/wp 
+cd /var/www/mysite
+wp core download --allow-root
+chmod 744 /wp-config.php
 
 #		listening port 9000 
 sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php/7.3/fpm/pool.d/www.conf

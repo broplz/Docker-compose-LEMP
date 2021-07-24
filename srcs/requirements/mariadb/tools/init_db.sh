@@ -6,7 +6,7 @@ echo bind_address = 0.0.0.0 >> /etc/mysql/my.cnf
 echo port = 3306 >> /etc/mysql/my.cnf
 echo skip-networking  = false >> /etc/mysql/my.cnf
 mkdir -p /var/run/mysqld/
-mkfifo /var/run/mysqld/mysqld.sock
+#mkfifo /var/run/mysqld/mysqld.sock
 
 #		giving permissions
 chmod 777 /var/run/mysqld/mysqld.sock

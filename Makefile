@@ -6,6 +6,8 @@ down:
 	cd ./srcs/ && docker-compose down
 restart:
 	cd ./srcs/ && docker-compose restart
+logs:
+	cd ./srcs/ && docker-compose logs -f
 ps:
 	cd ./srcs/ && docker-compose ps
 rm:
