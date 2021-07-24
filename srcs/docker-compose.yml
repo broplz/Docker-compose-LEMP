@@ -1,6 +1,6 @@
 version: '3.3'
 services:
-  mdb_svc:  
+  mariadb_svc:  
     build: ./requirements/mariadb/
     container_name: mariadb
     restart: always
@@ -9,11 +9,11 @@ services:
     volumes:
       - db_data:/var/lib/mysql/
     env_file: .env
-  ngin_svc:
+  nginx_svc:
     build: ./requirements/nginx/
     container_name: nginx
     depends_on:
-      - wp_svc
+      - wordpress_svc
     ports:
       - "443:443"
     restart: always
@@ -23,11 +23,11 @@ services:
       - wp_data:/var/www/
     extra_hosts:
       - ${DOMAIN_NAME}:127.0.0.1
-  wp_svc:
+  wordpress_svc:
     build: ./requirements/wordpress/
     container_name: wordpress
     depends_on:
-      - mdb_svc
+      - mariadb_svc
     restart: always
     networks:
       - docker-network
