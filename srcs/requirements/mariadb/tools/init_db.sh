@@ -15,10 +15,10 @@ fi
 
 #		changing data with .env inside of mdb container
 if [ ! -f /tmp/ch_db ]; then
-    sed -i -e "s|R_DB_NAME|$DB_NAME|g" /tmp/wp_database.sql
-    sed -i -e "s|R_DB_USER|$DB_USER|g" /tmp/wp_database.sql
-    sed -i -e "s|R_DB_PASSWORD|$DB_PASSWORD|g" /tmp/wp_database.sql
-    sed -i -e "s|R_DB_ROOT_PASSWORD|$DB_ROOT_PASS|g" /tmp/wp_database.sql
+    sed -i "s|R_DB_NAME|$DB_NAME|g" /tmp/wp_database.sql
+    sed -i "s|R_DB_USER|$DB_USER|g" /tmp/wp_database.sql
+    sed -i "s|R_DB_PASSWORD|$DB_PASSWORD|g" /tmp/wp_database.sql
+    sed -i "s|R_DB_ROOT_PASSWORD|$DB_ROOT_PASS|g" /tmp/wp_database.sql
     touch /tmp/ch_db
 fi
 

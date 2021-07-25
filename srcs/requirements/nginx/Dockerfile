@@ -4,7 +4,7 @@ FROM		debian:buster
 #		update, upgrade and install nginx, vim
 RUN			apt-get update \
 			&& apt-get upgrade -y \
-			&& apt-get -y install nginx vim openssl
+			&& apt-get -y install nginx openssl
 
 #		copy config
 COPY		./conf/nginx.conf /etc/nginx/sites-available/nginx.conf

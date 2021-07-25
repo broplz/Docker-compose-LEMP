@@ -21,8 +21,6 @@ services:
       - docker-network
     volumes:
       - wp_data:/var/www/
-    extra_hosts:
-      - ${DOMAIN_NAME}:127.0.0.1
   wordpress_svc:
     build: ./requirements/wordpress/
     container_name: wordpress
