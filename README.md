@@ -1,7 +1,7 @@
 # inception
 docker compose project
 
-///       ENG
+///       RU
 
 1. Для того, чтобы запустить проект вам понадобится: Docker, Docker-compose, Make
 
